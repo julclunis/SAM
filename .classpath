@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Program Files (x86)/Java/jre7"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="References/guava-15.0.jar"/>
+	<classpathentry kind="lib" path="References/j-calais-1.0.jar"/>
+	<classpathentry kind="lib" path="References/jackson-all-1.9.11.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
