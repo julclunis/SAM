@@ -11,3 +11,7 @@ http://commons.apache.org/proper/commons-io/index.html
 
 
 Testforcommit 
+
+
+    Jackson JAX-RS (http://wiki.fasterxml.com/JacksonHome)
+    Guava Libraries (http://code.google.com/p/guava-libraries/) 

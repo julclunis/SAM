@@ -33,7 +33,18 @@ public class SamOpenCalaisEntityExtractionViewModel {
     private File fileMain = null;
     private File directoryForBatchProcessing = null;
     private SemanticAnalysisProjectConfigurationMetadata sam = null;
-
+    private static CalaisClient clientForOpenCalais = null;
+    private static CalaisResponse response = null;
+    private static CalaisConfig configSetingsForOpenCalais = null;
+    private static Writer writer = null;
+    private static String fileTextPayoutLocation = null;
+    private static FileWriter fw = null;
+    private static PrintWriter out = null;
+    
+    
+    
+    public SamOpenCalaisEntityExtractionViewModel() { }
+    
     public File getFileMain() {
         return fileMain;
     }
@@ -61,17 +72,8 @@ public class SamOpenCalaisEntityExtractionViewModel {
     
     
     
-    private static CalaisClient clientForOpenCalais = null;
-    private static CalaisResponse response = null;
-    private static CalaisConfig configSetingsForOpenCalais = null;
 
-    private static Writer writer = null;
-    private static String fileTextPayoutLocation = null;
-    private static FileWriter fw = null;
-    private static PrintWriter out = null;
 
-    public SamOpenCalaisEntityExtractionViewModel() {
-    }
 
     public void initiateAndProcessOpenCalaisCall() {
 
@@ -97,7 +99,6 @@ public class SamOpenCalaisEntityExtractionViewModel {
             } else if (file.getName().endsWith(".txt")) {
                 System.out.println("File from Batch: " + file.getName());
                 divideAndAnalyze(file);
-
             }
         }
     }
@@ -110,14 +111,14 @@ public class SamOpenCalaisEntityExtractionViewModel {
 
     private void ConfigureAndConnectToOpenCalais() {
 
-        clientForOpenCalais = new CalaisRestClient(sam.getOCApiKey());//"j4sq7tc2k3yxpdtzd4pjvd5b";
+        clientForOpenCalais = new CalaisRestClient(sam.getOCApiKey());
         configSetingsForOpenCalais = new CalaisConfig();
 
         fileTextPayoutLocation = sam.getLocationForCallBackToSave();//"C:\\Users\\Sammy\\Desktop\\payloadfromOCWithSocialTags";
 
         //   http://www.opencalais.com/documentation/calais-web-service-api/forming-api-calls/input-parameters
         configSetingsForOpenCalais.set(CalaisConfig.ProcessingParam.CALCULATE_RELEVANCE_SCORE, "true");
-        // TODO add function to change to see if user wants to recieve relevanc score
+        // TODO add function to change to see if user wants to receive relevance score
         configSetingsForOpenCalais.set(CalaisConfig.ConnParam.READ_TIMEOUT, 100000);
         configSetingsForOpenCalais.set(CalaisConfig.ConnParam.CONNECT_TIMEOUT, 100000);
 
@@ -132,7 +133,7 @@ public class SamOpenCalaisEntityExtractionViewModel {
                 response = clientForOpenCalais.analyze(contentStringArray[numberOfCallPerDocument], configSetingsForOpenCalais);
                 if (response != null) {
                     saveOpenCalaisResults(numberOfCallPerDocument, response.getPayload().toString(), fileOrignalName);
-                    extractEntitiesAndSaveFile(response, fileOrignalName);
+                    extractEntitiesAndSaveFileAsCSV(response, fileOrignalName, numberOfCallPerDocument);
                 }
 
             } catch (IOException e) {
@@ -146,16 +147,16 @@ public class SamOpenCalaisEntityExtractionViewModel {
 
     private static void saveOpenCalaisResults(int xOf, String responesFromOpenCalais, String nameOfOriginalFile) throws IOException {
 
-        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileTextPayoutLocation + "\\" + xOf + "0_" + nameOfOriginalFile + ".txt"), "utf-8"));
+        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileTextPayoutLocation + "\\" + nameOfOriginalFile + "_" + xOf), "utf-8"));
         writer.write(responesFromOpenCalais);
         writer.close();
   
     }
 
-    private void extractEntitiesAndSaveFile(CalaisResponse responseFromOpenCalais, String nameOfOriginalFile) {
+    private void extractEntitiesAndSaveFileAsCSV(CalaisResponse responseFromOpenCalais, String nameOfOriginalFile, int numberofcalls) {
             //TODO incorporate a way to save extracted entities as RDF or CSV
         try {
-            fw = new FileWriter(sam.getLocationForExtractEntities() + "\\ExtractedEnttiesFor" + nameOfOriginalFile + ".csv");
+            fw = new FileWriter(sam.getLocationForExtractEntities() + "\\" + nameOfOriginalFile+ "_0" +numberofcalls+ ".csv");
             out = new PrintWriter(fw);
 
             //extract and print results to put put.############################
@@ -234,8 +235,13 @@ public class SamOpenCalaisEntityExtractionViewModel {
 
 
 
-
-
+/*
+ * 
+ * 
+ * 
+ */
+			// openCalaisAnalysisObject = new
+			// SAMOpenCalaisEngine(fileTobeAnalyzied, SAPCM, true);
 //         int returnVal = jFileChooser1.showOpenDialog(this);
 //         if(returnVal == JFileChooser.APPROVE_OPTION){
 //         
@@ -263,11 +269,11 @@ public class SamOpenCalaisEntityExtractionViewModel {
 //  maximumSizeForAnalsys = Integer.parseInt(sam.getMaxSizeForDocPerOCCall()); //97000;
 // CalaisConfig.UserParam.
 //</editor-fold>
-    /*
- The semantic engine is going to have a base class constructor. 
- ctor(file file)
- ctor(file directory, boon includeSubDirecotories)
- */
+    
+// The semantic engine is going to have a base class constructor. 
+// ctor(file file)
+// ctor(file directory, boon includeSubDirecotories)
+ 
     //configure....
 //public void ProcessContentFromTextWithOpenCalais(string[] content) 
 //publish the results
@@ -440,4 +446,4 @@ public class SamOpenCalaisEntityExtractionViewModel {
                 //System.out.println(sourfilestuff[0].)
         //save json returned from ##########################################
         //  if (fileMain != null) {
-      //  }
+      //  }*/

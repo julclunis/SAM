@@ -5,34 +5,21 @@
  */
 package CustomCommonUtilityClasses;
 
-import java.io.BufferedOutputStream;
+
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import org.apache.commons.io.FileUtils;
 
 /**
- *
- * @author Sammy Transforming Text Between ContentTypes within Java
- */
-public class HelperClass {
-
-    
-   /*
-    Documentation
+ *    Documentation
     http://commons.apache.org/proper/commons-io/download_io.cgi
     http://commons.apache.org/proper/commons-io/apidocs/overview-summary.html
     http://commons.apache.org/proper/commons-io/apidocs/org/apache/commons/io/FileUtils.html#readFileToString%28java.io.File%29
@@ -49,16 +36,12 @@ public class HelperClass {
     
     // http://stackoverflow.com/questions/1660034/replace-last-part-of-string
     // http://www.ibiblio.org/xml/books/xmljava/chapters/ch03s03.html
-	
+ * @author Sammy Transforming Text Between ContentTypes within Java
+ */
 
-    
-    */
-    
+public class HelperClass {
 
-    
-    
-    
-    
+
     //need configuring
     public static String readFile(String path, Charset encoding) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
@@ -112,3 +95,13 @@ public class HelperClass {
 
 
 }
+
+
+
+//import java.net.HttpURLConnection;
+//import java.net.URL;
+//import java.net.URLEncoder;
+//
+//import java.io.FileNotFoundException;
+//import java.io.FileNotFoundException;
+//import java.io.OutputStream;
