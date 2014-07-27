@@ -6,15 +6,27 @@
 
 package Views;
 
+import java.awt.FlowLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JMenuItem;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author Sammy
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    /**
-	 * 
-	 */
+	private static test frame;
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -55,6 +67,30 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         pack();
+        
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        
+        JMenu mnQuick = new JMenu("Quick");
+        menuBar.add(mnQuick);
+        
+        JButton btnStartF = new JButton("Start F");
+        btnStartF.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        	     showJframe();
+        		
+        	}
+        });
+        
+        JMenuItem mntmTest = new JMenuItem("test");
+        mntmTest.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent arg0) {
+        	    showJframe();
+        	}
+        });
+        mnQuick.add(mntmTest);
+        mnQuick.add(btnStartF);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -90,9 +126,71 @@ public class MainFrame extends javax.swing.JFrame {
                 new MainFrame().setVisible(true);
             }
         });
+        
+        
+   
+        
+        
+        
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static void showJframe() {
+		// TODO Auto-generated method stub
+    	
+    	frame = new test();
+    	frame.setSize(300, 300);
+    	frame.getContentPane().setLayout(new FlowLayout());
+    	//frame.add();
+    	frame.addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				// TODO Auto-generated method stub
+				frame.dispose();
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+    	frame.setVisible(true);	
+	
+    
+    }
+
+	// Variables declaration - do not modify//GEN-BEGIN:variables
     private Views.SemanticAnalyticOpenCalaisPanelComponent1 semanticAnalyticOpenCalaisPanelComponent11;
-    // End of variables declaration//GEN-END:variables
 }
