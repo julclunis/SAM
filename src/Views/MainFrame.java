@@ -5,6 +5,13 @@
  */
 
 package Views;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+
+import ViewModels.SammEngine;
 
 /**
  *
@@ -22,6 +29,10 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        
+        SammEngine SE = new SammEngine();
+        
+        
     }
 
     /**
@@ -55,6 +66,33 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         pack();
+        
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        
+        JMenu mnNewMenu = new JMenu("NLP");
+        menuBar.add(mnNewMenu);
+        
+        JRadioButton rdbtnNewRadioButton = new JRadioButton("OpenCalais Service");
+        mnNewMenu.add(rdbtnNewRadioButton);
+        
+        JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("SAS Text Analysis Server");
+        mnNewMenu.add(rdbtnNewRadioButton_1);
+        
+        JMenu mnNewMenu_1 = new JMenu("Configure");
+        menuBar.add(mnNewMenu_1);
+        
+        JButton btnNewButton = new JButton("Configure OpenCalais Connection");
+        mnNewMenu_1.add(btnNewButton);
+        
+        JButton btnNewButton_1 = new JButton("Configure SAS Text Analytics Connection");
+        mnNewMenu_1.add(btnNewButton_1);
+        
+        JMenu mnNewMenu_2 = new JMenu("Quick");
+        menuBar.add(mnNewMenu_2);
+        
+        JButton btnNewButton_2 = new JButton("Open Text Pane Dialog");
+        mnNewMenu_2.add(btnNewButton_2);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -94,5 +132,4 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Views.SemanticAnalyticOpenCalaisPanelComponent1 semanticAnalyticOpenCalaisPanelComponent11;
-    // End of variables declaration//GEN-END:variables
 }
