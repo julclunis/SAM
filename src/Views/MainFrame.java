@@ -10,8 +10,12 @@ import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 
+import ViewModels.SamOpenCalaisEntityExtractionViewModel;
 import ViewModels.SammEngine;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
@@ -19,20 +23,19 @@ import ViewModels.SammEngine;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
-	/**
-     * Creates new form MainFrame
-     */
+	private static final long serialVersionUID = 1L;
+	
+	SammEngine SE;
+	SamOpenCalaisEntityExtractionViewModel sasClassification;
+
     public MainFrame() {
         initComponents();
         
-        SammEngine SE = new SammEngine();
+         SE = new SammEngine();
+         sasClassification = new SamOpenCalaisEntityExtractionViewModel();
         
-        
+   
     }
 
     /**
@@ -92,6 +95,13 @@ public class MainFrame extends javax.swing.JFrame {
         menuBar.add(mnNewMenu_2);
         
         JButton btnNewButton_2 = new JButton("Open Text Pane Dialog");
+        btnNewButton_2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		System.out.println("here is something");
+        		collectQuickContent cck = new collectQuickContent();
+        		cck.setVisible(true);
+        	}
+        });
         mnNewMenu_2.add(btnNewButton_2);
     }// </editor-fold>//GEN-END:initComponents
 

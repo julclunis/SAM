@@ -2,17 +2,24 @@ package Views;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Window;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea;
+
 import java.awt.Rectangle;
+
 import javax.swing.border.BevelBorder;
 import javax.swing.JScrollBar;
+
 import java.awt.ScrollPane;
 import java.awt.Scrollbar;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class collectQuickContent extends JDialog {
 
@@ -56,6 +63,17 @@ public class collectQuickContent extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					
+				
+					public void actionPerformed(ActionEvent arg0) {
+						
+						sendthetexttotheengine();
+						
+					}
+
+				
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -66,6 +84,12 @@ public class collectQuickContent extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+
+	protected void sendthetexttotheengine() {
+	Window win =	SwingUtilities.getWindowAncestor(this);
+		System.out.println(win.getName());
+		
 	}
 
 }
