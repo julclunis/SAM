@@ -7,12 +7,10 @@
  *
  * @author Sammy
  */
-package ViewModels;
+package logic;
 
 import static CustomCommonUtilityClasses.FunctionsArrays.processAndChunkContentAsArrayOfStrings;
-
 import CustomCommonUtilityClasses.HelperClass;
-import Models.SemanticAnalysisProjectConfigurationMetadata;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,6 +20,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
+
+import models.SemanticAnalysisProjectConfigurationMetadata;
 import mx.bigdata.jcalais.CalaisClient;
 import mx.bigdata.jcalais.CalaisConfig;
 import mx.bigdata.jcalais.CalaisObject;

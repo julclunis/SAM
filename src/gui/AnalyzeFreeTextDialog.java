@@ -1,4 +1,4 @@
-package Views;
+package gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -21,7 +21,7 @@ import java.awt.Scrollbar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class collectQuickContent extends JDialog {
+public class AnalyzeFreeTextDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
@@ -30,7 +30,7 @@ public class collectQuickContent extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			collectQuickContent dialog = new collectQuickContent();
+			AnalyzeFreeTextDialog dialog = new AnalyzeFreeTextDialog();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -41,7 +41,7 @@ public class collectQuickContent extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public collectQuickContent() {
+	public AnalyzeFreeTextDialog() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));

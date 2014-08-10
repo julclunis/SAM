@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-package Views;
+package wip;
+import gui.AnalyzeFreeTextDialog;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
@@ -12,10 +14,12 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 
-import ViewModels.SamOpenCalaisEntityExtractionViewModel;
-import ViewModels.SammEngine;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.GroupLayout.Alignment;
+
+import logic.SamOpenCalaisEntityExtractionViewModel;
 
 /**
  *
@@ -47,26 +51,18 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        semanticAnalyticOpenCalaisPanelComponent11 = new Views.SemanticAnalyticOpenCalaisPanelComponent1();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(semanticAnalyticOpenCalaisPanelComponent11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGap(0, 462, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(semanticAnalyticOpenCalaisPanelComponent11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGap(0, 326, Short.MAX_VALUE)
         );
+        getContentPane().setLayout(layout);
 
         pack();
         
@@ -98,7 +94,7 @@ public class MainFrame extends javax.swing.JFrame {
         btnNewButton_2.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		System.out.println("here is something");
-        		collectQuickContent cck = new collectQuickContent();
+        		AnalyzeFreeTextDialog cck = new AnalyzeFreeTextDialog();
         		cck.setVisible(true);
         	}
         });
@@ -139,7 +135,4 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Views.SemanticAnalyticOpenCalaisPanelComponent1 semanticAnalyticOpenCalaisPanelComponent11;
 }
