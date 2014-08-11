@@ -1,0 +1,19 @@
+	private SamOpenCalaisEntityExtractionViewModel OCAO = null;
+	private StringBuilder strbif = null;
+	
+	
+	
+	
+	private void buildListOfFilesAndDirectoriesRecurivlyForStringBuilder(File[] sourfilestuff) {
+		for (File perfile : sourfilestuff) {
+			if (perfile.isDirectory()) {
+				strbif = strbif.append(perfile.getAbsolutePath());
+				strbif = strbif.append("\n");
+				buildListOfFilesAndDirectoriesRecurivlyForStringBuilder(perfile.listFiles());
+			} else {
+				strbif = strbif.append("-----");
+				strbif = strbif.append(perfile.getAbsolutePath());
+				strbif = strbif.append("\n");
+			}
+		}
+	}
