@@ -17,6 +17,7 @@ import models.SemanticAnalysisProjectConfigurationMetadata;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 public class SamFrame extends JFrame {
 
@@ -25,11 +26,11 @@ public class SamFrame extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	
 
-	SemanticAnalysisProjectConfigurationMetadata opencalaisconfiguration;
-	SamOpenCalaisEntityExtractionViewModel logic;
-	
+	private SemanticAnalysisProjectConfigurationMetadata opencalaisconfiguration;
+	private SamOpenCalaisEntityExtractionViewModel logic;
+	private SAOPCAC saopcac;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -47,76 +48,121 @@ public class SamFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public SamFrame() {
-		
-		logic = new SamOpenCalaisEntityExtractionViewModel();
-	
-		
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 504, 374);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		contentPane.add(menuBar, BorderLayout.NORTH);
-		
+
 		JMenu menu = new JMenu("NLP");
 		menuBar.add(menu);
-		
-		JRadioButton rdbtnOpencalaisWebService = new JRadioButton("OpenCalais Web Service");
+
+		JRadioButton rdbtnOpencalaisWebService = new JRadioButton(
+				"OpenCalais Web Service");
 		rdbtnOpencalaisWebService.setSelected(true);
 		menu.add(rdbtnOpencalaisWebService);
-		
+
 		JMenu menu_1 = new JMenu("Configure");
 		menuBar.add(menu_1);
-		
-		JButton configureOpenCalaisBtn = new JButton("Configure OpenCalais Connection");
+
+		JButton configureOpenCalaisBtn = new JButton(
+				"Configure OpenCalais Connection");
 		configureOpenCalaisBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ConfigureOpenCalaisDialog configurOC = new ConfigureOpenCalaisDialog();
 				
-			
-				opencalaisconfiguration = configurOC.showDialog();
-				
-		
-				
+
+				gatherConfigurationInformation();
+
 			}
 		});
 		menu_1.add(configureOpenCalaisBtn);
-		
+
 		JMenu mnAnalyze = new JMenu("Analyze");
 		menuBar.add(mnAnalyze);
-		
-		JButton startSemanticAnalysisButton = new JButton("Start Semantic Analysis");
-		
-		//action for 
+
+		JButton startSemanticAnalysisButton = new JButton(
+				"Start Semantic Analysis");
+
 		startSemanticAnalysisButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+
+				startSemanticsAnalysis();
 			}
 		});
 		mnAnalyze.add(startSemanticAnalysisButton);
-		
+
 		JButton btnStartFreeText = new JButton("Start Free Text Analysis");
 		btnStartFreeText.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AnalyzeFreeTextDialog aftd = new AnalyzeFreeTextDialog();
-				aftd.setVisible(true);
+				analyzeCopyAndPasteText();
 			}
 		});
 		mnAnalyze.add(btnStartFreeText);
-		
-		SAOPCAC saopcac = new SAOPCAC();
+
+		saopcac = new SAOPCAC();
 		contentPane.add(saopcac, BorderLayout.CENTER);
-		
-	//System.out.println(	saopcac.getComponents());
-		
-		
-		
-		
+
 	}
 
+	protected void startSemanticsAnalysis() {
+
+		logic = new SamOpenCalaisEntityExtractionViewModel();
+
+	logic.setSam(opencalaisconfiguration);
+			logic.getSam().setLocationForCallBackToSave(
+					opencalaisconfiguration.getLocationForCallBackToSave());
+			logic.getSam().setLocationForExtractEntities(
+					opencalaisconfiguration.getLocationForExtractEntities());
+			logic.getSam().setOCApiKey(opencalaisconfiguration.getOCApiKey());
+
+	
+		if (saopcac.getFileOrDirectoryLocationTextfiled().getText() != null) {
+			File tempfile = new File(saopcac
+					.getFileOrDirectoryLocationTextfiled().getText());
+
+			if (tempfile.isDirectory()) {
+				logic.setDirectoryForBatchProcessing(tempfile);
+			} else if (tempfile.isFile()) {
+
+				logic.setFileMain(tempfile);
+			}
+
+			logic.initiateAndProcessOpenCalaisCall();
+
+		} else {
+			System.out.println("file text field is null");
+		}
+
+		// check to see if textfield is directory for batch or file for single
+		// processing
+
+		// then initlaize
+	}
+
+	private SemanticAnalysisProjectConfigurationMetadata getConfigurationForOpenCalais() {
+		ConfigureOpenCalaisDialog configurOC = new ConfigureOpenCalaisDialog();
+		configurOC.setModal(true);
+		
+	
+		return configurOC.showDialog();
+	}
+
+	private void analyzeCopyAndPasteText() {
+		AnalyzeFreeTextDialog aftd = new AnalyzeFreeTextDialog();
+		aftd.setVisible(true);
+	}
+
+	public SAOPCAC getSaopcac() {
+		return saopcac;
+	}
+
+	private void gatherConfigurationInformation() {
+		opencalaisconfiguration	= getConfigurationForOpenCalais();
+		String x ="something";
+	}
 }

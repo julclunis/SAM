@@ -31,7 +31,11 @@ public class ConfigureOpenCalaisDialog extends JDialog {
 private SemanticAnalysisProjectConfigurationMetadata opencalais = new SemanticAnalysisProjectConfigurationMetadata();
 
 	public SemanticAnalysisProjectConfigurationMetadata showDialog(){
+		
+		
 		setVisible(true);
+		
+
 		return opencalais;
 	}
 	

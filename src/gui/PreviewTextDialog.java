@@ -2,15 +2,29 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollBar;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.ScrollPane;
+import java.awt.TextArea;
+import javax.swing.JScrollPane;
 
 public class PreviewTextDialog extends JDialog {
-
-	private final JPanel contentPanel = new JPanel();
+	private final JScrollPane scrollPane = new JScrollPane();
+	private final JTextArea textArea = new JTextArea();
 
 	/**
 	 * Launch the application.
@@ -29,27 +43,57 @@ public class PreviewTextDialog extends JDialog {
 	 * Create the dialog.
 	 */
 	public PreviewTextDialog() {
-		setBounds(100, 100, 450, 300);
+		//File fileToRead
+		//showCustomContentInDialog(fileToRead);
+		
+		setBounds(100, 100, 588, 410);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton closeButton = new JButton("Close");
+				closeButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						closeDialog();
+					}
+				});
+				closeButton.setActionCommand("OK");
+				buttonPane.add(closeButton);
+				getRootPane().setDefaultButton(closeButton);
 			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+		}
+		
+		getContentPane().add(scrollPane, BorderLayout.CENTER);
+		scrollPane.setViewportView(textArea);
+	}
+
+
+	protected void closeDialog() {
+		setVisible(false);
+		
+		
+	}
+
+	public void showCustomContentInDialog(File fileToRead) {
+		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		this.setVisible(true);
+		try {
+			textArea.read(new FileReader(fileToRead), null);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
+	
+
+
+	public JTextArea getTextArea() {
+		return textArea;
+	}
 }
