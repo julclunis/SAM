@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package customCommonUtilityClasses;
+package helper;
 
 import java.io.File;
 

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
-import logic.SamOpenCalaisEntityExtractionViewModel;
+import logic.openCalais.SamOpenCalaisEntityExtractionViewModel;
 import models.SemanticAnalysisProjectConfigurationMetadata;
 
 import java.awt.event.ActionListener;

@@ -22,7 +22,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JTextPane;
 
-import logic.SamOpenCalaisEntityExtractionViewModel;
+import logic.openCalais.SamOpenCalaisEntityExtractionViewModel;
 import models.SemanticAnalysisProjectConfigurationMetadata;
 
 public class SemanticAnalyticOpenCalaisPanelComponent1 extends

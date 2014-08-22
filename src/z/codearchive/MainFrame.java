@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.GroupLayout.Alignment;
 
-import logic.SamOpenCalaisEntityExtractionViewModel;
+import logic.openCalais.SamOpenCalaisEntityExtractionViewModel;
 
 /**
  *
