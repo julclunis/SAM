@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package wip;
+package z.codearchive;
 import gui.AnalyzeFreeTextDialog;
 
 import javax.swing.JMenuBar;

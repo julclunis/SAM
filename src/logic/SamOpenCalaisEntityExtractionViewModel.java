@@ -9,8 +9,7 @@
  */
 package logic;
 
-import static CustomCommonUtilityClasses.FunctionsArrays.processAndChunkContentAsArrayOfStrings;
-import CustomCommonUtilityClasses.HelperClass;
+import static customCommonUtilityClasses.FunctionsArrays.processAndChunkContentAsArrayOfStrings;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,6 +20,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 
+import customCommonUtilityClasses.HelperClass;
 import models.SemanticAnalysisProjectConfigurationMetadata;
 import mx.bigdata.jcalais.CalaisClient;
 import mx.bigdata.jcalais.CalaisConfig;
