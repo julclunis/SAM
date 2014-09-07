@@ -166,7 +166,6 @@ public class SAOPCAC extends JPanel {
 	}
 
 	protected void previewTextFromFile() {
-		// TODO Auto-generated method stub
 		try {
 
 			if (fileOrDirectoryLocationTextfiled.getText() != null) {

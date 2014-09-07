@@ -11,6 +11,7 @@ import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import javax.swing.UIManager;
 
 import logic.openCalais.SamOpenCalaisEntityExtractionViewModel;
 import models.SemanticAnalysisProjectConfigurationMetadata;
@@ -18,20 +19,22 @@ import models.SemanticAnalysisProjectConfigurationMetadata;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.awt.Toolkit;
 
 public class SamFrame extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-
 	private SemanticAnalysisProjectConfigurationMetadata opencalaisconfiguration;
 	private SamOpenCalaisEntityExtractionViewModel logic;
 	private SAOPCAC saopcac;
+	private JButton configureOpenCalaisBtn;
 
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -42,12 +45,14 @@ public class SamFrame extends JFrame {
 				}
 			}
 		});
+		
+		
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
 	public SamFrame() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(SamFrame.class.getResource("/gui/resources/samtitlepic32x32.png")));
+		setTitle("SAM Utility Tool");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 504, 374);
@@ -70,16 +75,9 @@ public class SamFrame extends JFrame {
 		JMenu menu_1 = new JMenu("Configure");
 		menuBar.add(menu_1);
 
-		JButton configureOpenCalaisBtn = new JButton(
+		configureOpenCalaisBtn = new JButton(
 				"Configure OpenCalais Connection");
-		configureOpenCalaisBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-
-				gatherConfigurationInformation();
-
-			}
-		});
+		
 		menu_1.add(configureOpenCalaisBtn);
 
 		JMenu mnAnalyze = new JMenu("Analyze");
@@ -106,6 +104,9 @@ public class SamFrame extends JFrame {
 
 		saopcac = new SAOPCAC();
 		contentPane.add(saopcac, BorderLayout.CENTER);
+		
+		
+		createEvents();
 
 	}
 
@@ -161,8 +162,12 @@ public class SamFrame extends JFrame {
 		return saopcac;
 	}
 
-	private void gatherConfigurationInformation() {
-		opencalaisconfiguration	= getConfigurationForOpenCalais();
-		String x ="something";
+	
+	private  void createEvents(){
+		configureOpenCalaisBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				opencalaisconfiguration	= getConfigurationForOpenCalais();
+			}
+		});
 	}
 }
