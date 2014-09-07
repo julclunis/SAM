@@ -1,6 +1,10 @@
 SAM Utility Tool
 =================
 
+
+This is the Beginning of the SAMM documentation
+
+
 =Purpose
 
 The purpose of this project is to create a prototype for semantic extracting concepts from text file,
