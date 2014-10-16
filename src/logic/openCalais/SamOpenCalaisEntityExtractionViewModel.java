@@ -96,10 +96,7 @@ public class SamOpenCalaisEntityExtractionViewModel {
 
 	private void divideAndAnalyze(File file) {
 
-		requestAnalysisForEachStringInArrayFromOpenCalaisAndSave(
-				processAndChunkContentAsArrayOfStrings(
-						HelperClass.readContentFromText(file), 97000),
-				file.getName());
+		requestAnalysisForEachStringInArrayFromOpenCalaisAndSave(processAndChunkContentAsArrayOfStrings(HelperClass.readContentFromText(file), 97000),	file.getName());
 
 	}
 
