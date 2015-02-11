@@ -14,7 +14,7 @@ Future version will incorporate different semantic analytics techniques.
 This project is Java based version JavaSE 1.7 . Built Using Eclipse Java EE IDE for Web Developers. 
 Version: Kepler Service Release 1
 
-WindowBuilder was used to create and maintian the GUI. 
+WindowBuilder was used to create and maintain the GUI. 
 
 	
 =What to do 
@@ -32,3 +32,22 @@ Developer and User need to sign up for an account and apply for a API key from O
     						<http://j-calais.googlecode.com/svn/javadoc/index.html>
     					Code licensed under Apache License 2.0 
     						<http://www.apache.org/licenses/LICENSE-2.0>
+    						
+    						
+ The major challenges and learning experience from developing this application. 
+ 	Understanding that files are large.
+ 	Understanding the way to iterate over files
+ 	Using Java
+ 	working with a variety of Open Source libraries with Java
+ 	Using WindowsBuilder a Eclipse extension
+ 	Using GitHub and Source Control.
+ 	Producing and saving CSV files. 
+ 	
+ 	
+ 
+ 
+ Working
+ 	multi-threading
+ 	mvc design pattern
+ 	dependency manager for eclipse 
+ 	testing and test driven development (TDD)
