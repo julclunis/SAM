@@ -1,4 +1,4 @@
-package gui;
+package views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -14,7 +14,7 @@ import javax.swing.UIManager;
 
 import org.apache.commons.io.FileUtils;
 
-import logic.openCalais.SamOpenCalaisEntityExtractionViewModel;
+import models.SamOpenCalaisEntityExtractionViewModel;
 import models.SemanticAnalysisProjectConfigurationMetadata;
 
 import java.awt.event.ActionListener;

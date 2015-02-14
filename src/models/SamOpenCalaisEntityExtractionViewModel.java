@@ -7,7 +7,7 @@
  *
  * @author Sammy
  */
-package logic.openCalais;
+package models;
 
 import static helper.FunctionsArrays.processAndChunkContentAsArrayOfStrings;
 import helper.HelperClass;
@@ -21,7 +21,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 
-import models.SemanticAnalysisProjectConfigurationMetadata;
 import mx.bigdata.jcalais.CalaisClient;
 import mx.bigdata.jcalais.CalaisConfig;
 import mx.bigdata.jcalais.CalaisObject;
