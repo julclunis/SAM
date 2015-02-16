@@ -1,29 +1,43 @@
-package gui;
+package views;
 
 import javax.swing.JPanel;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.JTextPane;
-import java.awt.Color;
 
-public class Oct16Ui extends JPanel {
-	private JTextField textField;
+import java.awt.Font;
+
+import javax.swing.JTextPane;
+
+import java.awt.Color;
+import java.awt.event.ActionListener;
+
+public class SamToolView extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JTextField openCalaisKeyTextField;
 	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField jsonOpenCalaisCallbackTextField;
+	private JTextField nerDataOutPutTextField;
+	private JButton btnStartOpencalaissNer;
+	private JButton btnCopyAndPaste;
+	private JButton btnSingleFile;
+	private JButton btnBatchDirectory;
+	private JButton btnSelectDirectoryForOutPut;
+	private JButton btnSelectDirectoryforJsonOutput;
 
 
 	/**
 	 * Create the panel.
 	 */
-	public Oct16Ui() {
+	public SamToolView() {
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -32,9 +46,9 @@ public class Oct16Ui extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(109, 18, 132, 20);
-		panel.add(textField);
+		openCalaisKeyTextField = new JTextField();
+		openCalaisKeyTextField.setBounds(109, 18, 132, 20);
+		panel.add(openCalaisKeyTextField);
 		
 		JLabel lblOpencalaisApiKey = new JLabel();
 		lblOpencalaisApiKey.setBounds(10, 21, 106, 14);
@@ -47,23 +61,23 @@ public class Oct16Ui extends JPanel {
 		textField_1.setText("97000");
 		
 		JLabel lblFileLength = new JLabel();
+		lblFileLength.setForeground(Color.RED);
 		lblFileLength.setBounds(7, 52, 109, 14);
 		panel.add(lblFileLength);
 		lblFileLength.setText(".txt File Length Size: ");
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Include Social Tags:");
+		chckbxNewCheckBox.setForeground(Color.RED);
 		chckbxNewCheckBox.setHorizontalTextPosition(SwingConstants.LEFT);
 		chckbxNewCheckBox.setSelected(true);
 		chckbxNewCheckBox.setBounds(10, 76, 122, 20);
 		panel.add(chckbxNewCheckBox);
 		
 		JLabel lblNewLabel_2 = new JLabel("97,000 Character Max");
+		lblNewLabel_2.setForeground(Color.RED);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblNewLabel_2.setBounds(161, 52, 102, 14);
 		panel.add(lblNewLabel_2);
-		
-	
-	
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Select Input Option for Text:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -87,15 +101,15 @@ public class Oct16Ui extends JPanel {
 		lblOption_1.setBounds(346, 21, 70, 14);
 		panel_1.add(lblOption_1);
 		
-		JButton btnCopyAndPaste = new JButton("Copy and Paste");
+		btnCopyAndPaste = new JButton("Copy and Paste");
 		btnCopyAndPaste.setBounds(10, 36, 109, 23);
 		panel_1.add(btnCopyAndPaste);
 		
-		JButton btnSingleFile = new JButton("Single .txt File");
+		btnSingleFile = new JButton("Single .txt File");
 		btnSingleFile.setBounds(160, 36, 101, 23);
 		panel_1.add(btnSingleFile);
 		
-		JButton btnBatchDirectory = new JButton("Batch Directory");
+		btnBatchDirectory = new JButton("Batch Directory");
 		btnBatchDirectory.setBounds(296, 36, 120, 23);
 		panel_1.add(btnBatchDirectory);
 		
@@ -104,18 +118,16 @@ public class Oct16Ui extends JPanel {
 		label_2.setBounds(277, 62, 143, 14);
 		panel_1.add(label_2);
 		label_2.setText("Select File or Directory to be Analyzed");
-		
-
-		
+			
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Select Output Directory and Start Metadata Extraction", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_2.setBounds(6, 223, 426, 136);
 		add(panel_2);
 		panel_2.setLayout(null);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(133, 69, 279, 20);
-		panel_2.add(textField_3);
+		jsonOpenCalaisCallbackTextField = new JTextField();
+		jsonOpenCalaisCallbackTextField.setBounds(133, 69, 279, 20);
+		panel_2.add(jsonOpenCalaisCallbackTextField);
 		
 		JLabel lblOpencalaissJsonCallback = new JLabel();
 		lblOpencalaissJsonCallback.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -124,9 +136,9 @@ public class Oct16Ui extends JPanel {
 		panel_2.add(lblOpencalaissJsonCallback);
 		lblOpencalaissJsonCallback.setText("OpenCalais JSON Callback Payload (.json)");
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(133, 34, 279, 20);
-		panel_2.add(textField_4);
+		nerDataOutPutTextField = new JTextField();
+		nerDataOutPutTextField.setBounds(133, 34, 279, 20);
+		panel_2.add(nerDataOutPutTextField);
 		
 		JLabel lblExtractedEntitiesData = new JLabel();
 		lblExtractedEntitiesData.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -135,18 +147,18 @@ public class Oct16Ui extends JPanel {
 		panel_2.add(lblExtractedEntitiesData);
 		lblExtractedEntitiesData.setText("Named-Entity Recognition Data Output (.csv)");
 		
-		JButton btnStartOpencalaissNer = new JButton("Start");
+		btnStartOpencalaissNer = new JButton("Start");
 		btnStartOpencalaissNer.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnStartOpencalaissNer.setBounds(160, 102, 101, 23);
 		panel_2.add(btnStartOpencalaissNer);
 		
-		JButton btnSelectDirectory = new JButton("Select Directory");
-		btnSelectDirectory.setBounds(10, 33, 113, 23);
-		panel_2.add(btnSelectDirectory);
+		btnSelectDirectoryForOutPut = new JButton("Select Directory");
+		btnSelectDirectoryForOutPut.setBounds(10, 33, 113, 23);
+		panel_2.add(btnSelectDirectoryForOutPut);
 		
-		JButton button = new JButton("Select Directory");
-		button.setBounds(10, 68, 113, 23);
-		panel_2.add(button);
+		btnSelectDirectoryforJsonOutput = new JButton("Select Directory");
+		btnSelectDirectoryforJsonOutput.setBounds(10, 68, 113, 23);
+		panel_2.add(btnSelectDirectoryforJsonOutput);
 		
 		JPanel SamHeaderAndTitle = new JPanel();
 		SamHeaderAndTitle.setBounds(279, 11, 153, 111);
@@ -172,4 +184,68 @@ public class Oct16Ui extends JPanel {
 		SamHeaderAndTitle.add(lblNewLabel_1);
 
 	}
+
+
+	public String getOpenCalaisKey(){
+		return openCalaisKeyTextField.getText();
+	}
+	
+	public String getNerDataOutput(){
+		return nerDataOutPutTextField.getText();
+		
+	}
+	
+	public String getJsonSavedLocation(){
+		return jsonOpenCalaisCallbackTextField.getText();
+	}
+	
+	void addStartOpenCalaisSemanticAnalysis(ActionListener listForStartButton){
+		btnStartOpencalaissNer.addActionListener(listForStartButton);
+	}
+
+	void addCopyAndPastContentListener(ActionListener listenForCopyAndPastButton){
+		btnCopyAndPaste.addActionListener(listenForCopyAndPastButton);
+	}
+	
+	void addSingleFileListener(ActionListener listenforSingleFileButton){
+		btnSingleFile.addActionListener(listenforSingleFileButton);
+	}
+	
+	void addBatchDirecotryButtonListener(ActionListener listenforBatchFileButton){
+		btnBatchDirectory.addActionListener(listenforBatchFileButton);
+	}
+	
+	void addSelectDirectoryForNerOutput(ActionListener listenforSelectingNerOutput){
+		btnSelectDirectoryForOutPut.addActionListener(listenforSelectingNerOutput);
+	}
+	
+	void addSelectDirectoryForJsonCallBackFromOpenCalais(ActionListener listenForSelectDirectoryForJsonOutput){
+		btnSelectDirectoryforJsonOutput.addActionListener(listenForSelectDirectoryForJsonOutput);
+	}
+
+	void displayErrorMessage(String errorMessage){
+		JOptionPane.showMessageDialog(this, errorMessage);
+	}
+	
 }
+
+
+
+//public JButton getBtnStartOpencalaissNer() {
+//return btnStartOpencalaissNer;
+//}
+//public JButton getBtnCopyAndPaste() {
+//return btnCopyAndPaste;
+//}
+//public JButton getBtnSingleFile() {
+//return btnSingleFile;
+//}
+//public JButton getBtnBatchDirectory() {
+//return btnBatchDirectory;
+//}
+//public JButton getBtnSelectDirectory() {
+//return btnSelectDirectoryForOutPut;
+//}
+//public JButton getBtnSelectDirectoryforJsonOutput() {
+//return btnSelectDirectoryforJsonOutput;
+//}

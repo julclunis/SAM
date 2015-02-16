@@ -9,7 +9,7 @@ package models;
  *
  * @author Sammy
  */
-public class SemanticAnalysisProjectConfigurationMetadata {
+public class OpenCalaisConfigurationMetadata {
 
 
   

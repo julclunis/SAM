@@ -1,4 +1,4 @@
-package gui;
+package views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -14,8 +14,8 @@ import javax.swing.UIManager;
 
 import org.apache.commons.io.FileUtils;
 
-import logic.openCalais.SamOpenCalaisEntityExtractionViewModel;
-import models.SemanticAnalysisProjectConfigurationMetadata;
+import models.OpenCalaisServiceCallModel;
+import models.OpenCalaisConfigurationMetadata;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,8 +28,8 @@ public class SamFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	
-	private SemanticAnalysisProjectConfigurationMetadata opencalaisconfiguration;
-	private SamOpenCalaisEntityExtractionViewModel logic;
+	private OpenCalaisConfigurationMetadata opencalaisconfiguration;
+	private OpenCalaisServiceCallModel logic;
 	
 	private OpenCalaisSemanticApp saopcac;
 	
@@ -136,7 +136,7 @@ public class SamFrame extends JFrame {
 
 	private void configureOpenCalaisEngine() {
 		
-		logic = new SamOpenCalaisEntityExtractionViewModel();
+		logic = new OpenCalaisServiceCallModel();
 		logic.setSam(opencalaisconfiguration);
 		logic.getSam().setLocationForCallBackToSave(
 				opencalaisconfiguration.getLocationForCallBackToSave());

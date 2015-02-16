@@ -13,7 +13,7 @@ import java.io.File;
  * @author Sammy
  */
 
-import java.io.File;
+
 import java.io.FilenameFilter;
 import java.util.HashSet;
 import java.util.Iterator;

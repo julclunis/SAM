@@ -1,4 +1,4 @@
-package gui;
+package views;
 
 import java.awt.FlowLayout;
 
@@ -16,7 +16,7 @@ import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import models.SemanticAnalysisProjectConfigurationMetadata;
+import models.OpenCalaisConfigurationMetadata;
 
 @SuppressWarnings("serial")
 public class DialogForConfiguringOpenCalais extends JDialog {
@@ -29,21 +29,21 @@ public class DialogForConfiguringOpenCalais extends JDialog {
 	private JTextField openCalaisApiKeyCodeTextField;
 	private JTextField locationForSavingOCJsonCallBackTextField;
 
-	private SemanticAnalysisProjectConfigurationMetadata opencalais = null;
-	private SemanticAnalysisProjectConfigurationMetadata savedConfiguration = null;
+	private OpenCalaisConfigurationMetadata opencalais = null;
+	private OpenCalaisConfigurationMetadata savedConfiguration = null;
 
 	private JButton okButton;
 	private JButton cancelButton;
 
 	public DialogForConfiguringOpenCalais() {
-		opencalais = new SemanticAnalysisProjectConfigurationMetadata();
+		opencalais = new OpenCalaisConfigurationMetadata();
 		initComponents();
 		createEvents();
 
 	}
 
 	public DialogForConfiguringOpenCalais(
-			SemanticAnalysisProjectConfigurationMetadata savedConfig) {
+			OpenCalaisConfigurationMetadata savedConfig) {
 		this();
 
 		savedConfiguration = savedConfig;
@@ -204,7 +204,7 @@ public class DialogForConfiguringOpenCalais extends JDialog {
 
 	}
 
-	public SemanticAnalysisProjectConfigurationMetadata showDialog() {
+	public OpenCalaisConfigurationMetadata showDialog() {
 		setVisible(true);
 		return opencalais;
 	}
