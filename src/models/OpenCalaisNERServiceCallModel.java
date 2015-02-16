@@ -27,11 +27,11 @@ import mx.bigdata.jcalais.CalaisObject;
 import mx.bigdata.jcalais.CalaisResponse;
 import mx.bigdata.jcalais.rest.CalaisRestClient;
 
-public class SamOpenCalaisEntityExtractionViewModel {
+public class OpenCalaisNERServiceCallModel {
 
 	private File fileMain = null;
 	private File directoryForBatchProcessing = null;
-	private SemanticAnalysisProjectConfigurationMetadata sam = null;
+	private OpenCalaisConfigurationModel sam = null;
 	private static CalaisClient clientForOpenCalais = null;
 	private static CalaisResponse response = null;
 	private static CalaisConfig configSetingsForOpenCalais = null;
@@ -44,7 +44,7 @@ public class SamOpenCalaisEntityExtractionViewModel {
 		return fileMain;
 	}
 
-	public SemanticAnalysisProjectConfigurationMetadata getSam() {
+	public OpenCalaisConfigurationModel getSam() {
 		return sam;
 	}
 
@@ -71,7 +71,7 @@ public class SamOpenCalaisEntityExtractionViewModel {
 		directoryForBatchProcessing = directoryForBatchProcessingName;
 	}
 
-	public void setSam(SemanticAnalysisProjectConfigurationMetadata samName) {
+	public void setSam(OpenCalaisConfigurationModel samName) {
 		sam = samName;
 	}
 

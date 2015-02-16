@@ -1,19 +1,27 @@
 package views;
 
 import javax.swing.JPanel;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.JTextPane;
-import java.awt.Color;
 
-public class Oct16Ui extends JPanel {
+import java.awt.Font;
+
+import javax.swing.JTextPane;
+
+import java.awt.Color;
+import java.awt.event.ActionListener;
+
+public class SamToolView extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_3;
@@ -23,7 +31,7 @@ public class Oct16Ui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Oct16Ui() {
+	public SamToolView() {
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -47,6 +55,7 @@ public class Oct16Ui extends JPanel {
 		textField_1.setText("97000");
 		
 		JLabel lblFileLength = new JLabel();
+		lblFileLength.setForeground(Color.RED);
 		lblFileLength.setBounds(7, 52, 109, 14);
 		panel.add(lblFileLength);
 		lblFileLength.setText(".txt File Length Size: ");
@@ -58,6 +67,7 @@ public class Oct16Ui extends JPanel {
 		panel.add(chckbxNewCheckBox);
 		
 		JLabel lblNewLabel_2 = new JLabel("97,000 Character Max");
+		lblNewLabel_2.setForeground(Color.RED);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblNewLabel_2.setBounds(161, 52, 102, 14);
 		panel.add(lblNewLabel_2);
@@ -171,5 +181,33 @@ public class Oct16Ui extends JPanel {
 		lblNewLabel_1.setBounds(10, 27, 133, 14);
 		SamHeaderAndTitle.add(lblNewLabel_1);
 
+	}
+	public String getNERDataOutputDirectoryLocation() {
+		return textField_4.getText();
+	}
+	public String getOpenCalaisJsonCallBackDirectorySavedLocation() {
+		return textField_3.getText();
+	}
+	public String getOpenCalaisApiKey() {
+		return textField.getText();
+	}
+	
+	void addStartSemanticAnalysisListern(ActionListener listenForStartButton){
+	
+	}
+	
+	void addSelectCopyAndPasteBtn(ActionListener listenforCopyandPastButton){
+		
+	}
+	
+	void addSelectSingleFileBtn(ActionListener listenForSingleFileButton){
+		
+	}
+	void addSelectBatchDirectoryBtn(ActionListener listforBatchDirectoryButton){
+		
+	}
+	
+	void displayErrorMessage(String errorMessage){
+		JOptionPane.showMessageDialog(this, errorMessage);
 	}
 }
