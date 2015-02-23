@@ -38,21 +38,7 @@ public class SamFrame extends JFrame {
 	private JButton btnStartFreeText;
 
 	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
-
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SamFrame frame = new SamFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	
 
 	}
 
@@ -105,80 +91,5 @@ public class SamFrame extends JFrame {
 		contentPane.add(saopcac, BorderLayout.CENTER);
 	}
 
-	protected void startSemanticsAnalysis() {
-		configureOpenCalaisEngine();
-		if (saopcac.getFileOrDirectoryLocationTextfiled().getText() != null) {
-			File tempfile = new File(saopcac.getFileOrDirectoryLocationTextfiled().getText());
-			
-			if (tempfile.isDirectory()) {
-				logic.setDirectoryForBatchProcessing(tempfile);
-			} else if (tempfile.isFile()) {
-				logic.setFileMain(tempfile);
-			}
-			logic.initiateAndProcessOpenCalaisCall();
-
-		} else {
-			System.out.println("file text field is null");
-		}
-	}
 	
-	private void startSemanticsAnalysis(String freetextContent){
-		configureOpenCalaisEngine();
-		try {
-			File temfile = File.createTempFile("filename", "txt");
-			FileUtils.writeStringToFile(temfile, freetextContent);
-			logic.setFileMain(temfile);
-			logic.initiateAndProcessOpenCalaisCall();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void configureOpenCalaisEngine() {
-		
-		logic = new SamOpenCalaisEntityExtractionViewModel();
-		logic.setSam(opencalaisconfiguration);
-		logic.getSam().setLocationForCallBackToSave(
-				opencalaisconfiguration.getLocationForCallBackToSave());
-		logic.getSam().setLocationForExtractEntities(
-				opencalaisconfiguration.getLocationForExtractEntities());
-		logic.getSam().setOCApiKey(opencalaisconfiguration.getOCApiKey());
-		
-	}
-
-	private void createEvents() {
-		configureOpenCalaisBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				if (opencalaisconfiguration == null) {	
-				DialogForConfiguringOpenCalais configurOC = new DialogForConfiguringOpenCalais();
-				configurOC.setModal(true);
-				opencalaisconfiguration = configurOC.showDialog();
-				} else if (opencalaisconfiguration != null) {
-					DialogForConfiguringOpenCalais configurOC = new DialogForConfiguringOpenCalais(opencalaisconfiguration);
-					configurOC.setModal(true);
-					opencalaisconfiguration = configurOC.showDialog();
-				}
-			}//end of action
-		});
-		
-		startSemanticAnalysisButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				startSemanticsAnalysis();
-			}
-		});
-		
-		btnStartFreeText.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				DialogForAnalyzeFreeText aftd = new DialogForAnalyzeFreeText();
-				aftd.setModal(true);
-				//aftd.setVisible(true);
-				//System.out.println("set if visible");
-				String contentToAnalyze = aftd.showDialog();
-				startSemanticsAnalysis(contentToAnalyze);
-
-			}
-		});
-	}// EndofCreateEVents....
 }
