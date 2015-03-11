@@ -4,7 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.UIManager;
 
+import models.*;
 import controller.SAMController;
+
 import views.SamToolView;
 
 
@@ -12,6 +14,11 @@ import views.SamToolView;
 public class SamTool {
 
 	public static void main(String[] args) {
+		
+		SamToolView theView = new SamToolView();
+		OpenCalaisConfigurationModel theOpenCalaisConfigModel = new OpenCalaisConfigurationModel();
+		OpenCalaisNERServiceCallModel theOpenCalaisCallModel = new OpenCalaisNERServiceCallModel();
+		
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
@@ -22,9 +29,9 @@ public class SamTool {
 				try {
 					
 					SamToolView frame = new SamToolView();
-					frame.setVisible(true);
-				SAMController sc = new SAMController();
 				
+				SAMController sc = new SAMController(theView, theOpenCalaisConfigModel, theOpenCalaisCallModel);
+					frame.setVisible(true);
 				
 				} catch (Exception e) {
 					e.printStackTrace();

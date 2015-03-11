@@ -26,7 +26,7 @@ public class OpenCalaisSemanticApp extends JPanel {
 
 	public OpenCalaisSemanticApp() {
 		initGuiComponents();
-		createEvents();
+		//createEvents();
 	}
 
 	private void initGuiComponents() {

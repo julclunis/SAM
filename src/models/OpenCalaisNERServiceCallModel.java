@@ -21,6 +21,9 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 
+import org.apache.commons.io.FileUtils;
+
+import controller.SamOpenCalaisEntityExtractionViewModel;
 import mx.bigdata.jcalais.CalaisClient;
 import mx.bigdata.jcalais.CalaisConfig;
 import mx.bigdata.jcalais.CalaisObject;
@@ -29,8 +32,8 @@ import mx.bigdata.jcalais.rest.CalaisRestClient;
 
 public class OpenCalaisNERServiceCallModel {
 
-	private File fileMain = null;
-	private File directoryForBatchProcessing = null;
+	private static File fileMain = null;
+	private static File directoryForBatchProcessing = null;
 	private OpenCalaisConfigurationModel sam = null;
 	private static CalaisClient clientForOpenCalais = null;
 	private static CalaisResponse response = null;
@@ -52,7 +55,7 @@ public class OpenCalaisNERServiceCallModel {
 		return directoryForBatchProcessing;
 	}
 
-	public void initiateAndProcessOpenCalaisCall() {
+	public static void initiateAndProcessOpenCalaisCall() {
 
 		if (fileMain != null) {
 			divideAndAnalyze(fileMain);
@@ -65,7 +68,45 @@ public class OpenCalaisNERServiceCallModel {
 		fileMain = null;
 		directoryForBatchProcessing = null;
 	}
+	
+	public static void startSemanticsFreeTextAnalysis(String freetextContent){
+		configureOpenCalaisEngine(sam);
+		try {
+			File temfile = File.createTempFile("filename", "txt");
+			FileUtils.writeStringToFile(temfile, freetextContent);
+			this.setFileMain(temfile);
+			initiateAndProcessOpenCalaisCall();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	protected void startSemanticsAnalysis() {
+		configureOpenCalaisEngine(sam);
+		if (saopcac.getFileOrDirectoryLocationTextfiled().getText() != null) {
+			File tempfile = new File(saopcac.getFileOrDirectoryLocationTextfiled().getText());
+			
+			if (tempfile.isDirectory()) {
+				logic.setDirectoryForBatchProcessing(tempfile);
+			} else if (tempfile.isFile()) {
+				logic.setFileMain(tempfile);
+			}
+			logic.initiateAndProcessOpenCalaisCall();
 
+		} else {
+			System.out.println("file text field is null");
+		}
+	}
+	private void configureOpenCalaisEngine(OpenCalaisConfigurationModel opencm) {
+		
+		logic = new SamOpenCalaisEntityExtractionViewModel();
+		logic.setSam(opencalaisconfiguration);
+		logic.getSam().setLocationForCallBackToSave(
+				opencalaisconfiguration.getLocationForCallBackToSave());
+		logic.getSam().setLocationForExtractEntities(
+				opencalaisconfiguration.getLocationForExtractEntities());
+		logic.getSam().setOCApiKey(opencalaisconfiguration.getOCApiKey());
+		
+	}
 	public void setDirectoryForBatchProcessing(
 			File directoryForBatchProcessingName) {
 		directoryForBatchProcessing = directoryForBatchProcessingName;
@@ -79,7 +120,7 @@ public class OpenCalaisNERServiceCallModel {
 		fileMain = fileMainName;
 	}
 
-	private void processFileForBatch(File[] fileSourceList) {
+	private static void processFileForBatch(File[] fileSourceList) {
 		// http://stackoverflow.com/questions/3154488/best-way-to-iterate-through-a-directory-in-java
 		for (File file : fileSourceList) {
 			if (file.isDirectory()) {
@@ -93,13 +134,13 @@ public class OpenCalaisNERServiceCallModel {
 		}
 	}
 
-	private void divideAndAnalyze(File file) {
+	private static void divideAndAnalyze(File file) {
 
 		requestAnalysisForEachStringInArrayFromOpenCalaisAndSave(processAndChunkContentAsArrayOfStrings(HelperClass.readContentFromText(file), 97000),	file.getName());
 
 	}
 
-	private void ConfigureAndConnectToOpenCalais() {
+	private static void ConfigureAndConnectToOpenCalais() {
 
 		clientForOpenCalais = new CalaisRestClient(sam.getOCApiKey());
 		configSetingsForOpenCalais = new CalaisConfig();
@@ -118,7 +159,7 @@ public class OpenCalaisNERServiceCallModel {
 
 	}
 
-	private void requestAnalysisForEachStringInArrayFromOpenCalaisAndSave(
+	private static void requestAnalysisForEachStringInArrayFromOpenCalaisAndSave(
 			String[] contentStringArray, String fileOrignalName) {
 
 		ConfigureAndConnectToOpenCalais();
@@ -156,7 +197,7 @@ public class OpenCalaisNERServiceCallModel {
 
 	}
 
-	private void extractEntitiesAndSaveFileAsCSV(
+	private static void extractEntitiesAndSaveFileAsCSV(
 			CalaisResponse responseFromOpenCalais, String nameOfOriginalFile,
 			int numberofcalls) {
 		// TODO incorporate a way to save extracted entities as RDF or CSV

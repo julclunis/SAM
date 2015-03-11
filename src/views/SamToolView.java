@@ -26,6 +26,7 @@ public class SamToolView extends JPanel {
 	private JTextField textField_1;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private JTextField textFieldForStartingDirectoryOrFile;
 
 
 	/**
@@ -77,7 +78,7 @@ public class SamToolView extends JPanel {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Select Input Option for Text:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(6, 121, 426, 102);
+		panel_1.setBounds(6, 121, 426, 116);
 		add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -111,15 +112,20 @@ public class SamToolView extends JPanel {
 		
 		JLabel label_2 = new JLabel();
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		label_2.setBounds(277, 62, 143, 14);
+		label_2.setBounds(146, 73, 143, 14);
 		panel_1.add(label_2);
 		label_2.setText("Select File or Directory to be Analyzed");
+		
+		textFieldForStartingDirectoryOrFile = new JTextField();
+		textFieldForStartingDirectoryOrFile.setBounds(20, 87, 396, 23);
+		panel_1.add(textFieldForStartingDirectoryOrFile);
+		textFieldForStartingDirectoryOrFile.setColumns(10);
 		
 
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Select Output Directory and Start Metadata Extraction", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBounds(6, 223, 426, 136);
+		panel_2.setBounds(6, 248, 426, 136);
 		add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -209,5 +215,8 @@ public class SamToolView extends JPanel {
 	
 	void displayErrorMessage(String errorMessage){
 		JOptionPane.showMessageDialog(this, errorMessage);
+	}
+	public JTextField getTextFieldForStartingDirectoryOrFile() {
+		return textFieldForStartingDirectoryOrFile;
 	}
 }
