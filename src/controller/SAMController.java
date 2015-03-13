@@ -25,6 +25,7 @@ public class SAMController {
 	public SAMController(SamToolView theview,
 			OpenCalaisConfigurationModel theconfig,
 			OpenCalaisNERServiceCallModel theservicemodel) {
+		
 		this.theView = theview;
 		this.confModel = theconfig;
 		this.webServiceCallModel = theservicemodel;
@@ -107,18 +108,21 @@ public class SAMController {
 
 	class ListFilesAndDirectoryActionListner implements ActionListener {
 
+		
+		StringBuilder strbif = new StringBuilder();
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
 
-				if (fileOrDirectoryLocationTextfiled.getText() != null) {
+				if (theView.getTextFieldForStartingDirectoryOrFile().getText() != null) {
 					File tempfile = new File(
-							fileOrDirectoryLocationTextfiled.getText());
+							theView.getTextFieldForStartingDirectoryOrFile().getText());
 
 					if (tempfile.isDirectory()) {
 
 						strbif = new StringBuilder();
-						iterateandPrintDirectoryandFiles(tempfile.listFiles());
+						IterateAndPrintDirectoryAndFilesActionListener.iterateandPrintDirectoryandFiles(tempfile.listFiles());
 
 						DialogForPreviewingText ptd = new DialogForPreviewingText();
 
@@ -194,7 +198,7 @@ public class SAMController {
 }// potentially convert this void into a string builder function
 class IterateAndPrintDirectoryAndFilesActionListener implements ActionListener {
 
-	StringBuilder strbif = new StringBuilder();
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -202,7 +206,8 @@ class IterateAndPrintDirectoryAndFilesActionListener implements ActionListener {
 
 	}
 
-	protected void iterateandPrintDirectoryandFiles(File[] files) {
+	public static void iterateandPrintDirectoryandFiles(File[] files) {
+		StringBuilder strbif = new StringBuilder();
 		for (File perfile : files) {
 			if (perfile.isDirectory()) {
 				strbif = strbif.append(perfile.getAbsolutePath());
@@ -217,7 +222,7 @@ class IterateAndPrintDirectoryAndFilesActionListener implements ActionListener {
 
 	}
 }
-
+}
 
 
 // protected void iterateandPrintDirectoryandFiles(File[] files) {
