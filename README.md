@@ -98,4 +98,7 @@ Developer and User need to sign up for an account and apply for a API key from O
 		Include ways to access other services beyond OpenCalais.
 		Includes other project such as Weka, and Stanford's NLP Tools to start processing in-house
 		Include capabilities  
+		
+		
+		
  	

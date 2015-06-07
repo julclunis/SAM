@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 
 import javax.swing.UIManager;
 
+import views.SamFrame;
+
 public class SamTool {
 
 
@@ -18,8 +20,8 @@ public class SamTool {
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-//						SamFrame frame = new SamFrame();
-//						frame.setVisible(true);
+					SamFrame frame = new SamFrame();
+						frame.setVisible(true);
 						
 						
 					} catch (Exception e) {

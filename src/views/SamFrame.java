@@ -4,7 +4,6 @@ package views;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,23 +12,17 @@ import javax.swing.JMenu;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.UIManager;
-
 import org.apache.commons.io.FileUtils;
-
 import views.DialogForAnalyzeFreeText;
 import views.DialogForConfiguringOpenCalais;
-import views.OpenCalaisSemanticApp;
-
-
-
-
 import models.OpenCalaisNERServiceCallModel;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Toolkit;
+
+
 
 public class SamFrame extends JFrame {
 
@@ -39,30 +32,30 @@ public class SamFrame extends JFrame {
 	private models.OpenCalaisConfigurationModel opencalaisconfiguration;
 	private models.OpenCalaisNERServiceCallModel logic;
 	
-	private OpenCalaisSemanticApp saopcac;
+	private SamToolView saopcac;
 	
 	private JButton configureOpenCalaisBtn;
 	private JButton startSemanticAnalysisButton;
 	private JButton btnStartFreeText;
 
-	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
-
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SamFrame frame = new SamFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
-	}
+//	public static void main(String[] args) {
+//		try {
+//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		} catch (Exception e) {
+//
+//		}
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					SamFrame frame = new SamFrame();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//
+//	}
 
 	public SamFrame() {
 		
@@ -109,14 +102,14 @@ public class SamFrame extends JFrame {
 		btnStartFreeText = new JButton("Start Free Text Analysis");
 		mnAnalyze.add(btnStartFreeText);
 
-		saopcac = new OpenCalaisSemanticApp();
+		saopcac = new SamToolView();
 		contentPane.add(saopcac, BorderLayout.CENTER);
 	}
 
 	protected void startSemanticsAnalysis() {
 		configureOpenCalaisEngine();
-		if (saopcac.getFileOrDirectoryLocationTextfiled().getText() != null) {
-			File tempfile = new File(saopcac.getFileOrDirectoryLocationTextfiled().getText());
+		if (saopcac.getFileOrDirectoryForOpenCalaisWebCall().getText() != null) {
+			File tempfile = new File(saopcac.getFileOrDirectoryForOpenCalaisWebCall().getText());
 			
 			if (tempfile.isDirectory()) {
 				logic.setDirectoryForBatchProcessing(tempfile);
