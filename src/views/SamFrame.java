@@ -73,7 +73,7 @@ public class SamFrame extends JFrame {
 
 	private void initGuiComponents() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				SamFrame.class.getResource("/gui/resources/samtitlepic32x32.png")));
+				SamFrame.class.getResource("/resources/samtitlepic32x32.png")));
 		setTitle("SAM Utility Tool");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
