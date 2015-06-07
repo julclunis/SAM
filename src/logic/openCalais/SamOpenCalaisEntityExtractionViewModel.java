@@ -7,7 +7,7 @@
  *
  * @author Sammy
  */
-package models;
+package logic.openCalais;
 
 import static helper.FunctionsArrays.processAndChunkContentAsArrayOfStrings;
 import helper.HelperClass;
@@ -21,17 +21,18 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Writer;
 
+import models.SemanticAnalysisProjectConfigurationMetadata;
 import mx.bigdata.jcalais.CalaisClient;
 import mx.bigdata.jcalais.CalaisConfig;
 import mx.bigdata.jcalais.CalaisObject;
 import mx.bigdata.jcalais.CalaisResponse;
 import mx.bigdata.jcalais.rest.CalaisRestClient;
 
-public class OpenCalaisNERServiceCallModel {
+public class SamOpenCalaisEntityExtractionViewModel {
 
 	private File fileMain = null;
 	private File directoryForBatchProcessing = null;
-	private OpenCalaisConfigurationModel sam = null;
+	private SemanticAnalysisProjectConfigurationMetadata sam = null;
 	private static CalaisClient clientForOpenCalais = null;
 	private static CalaisResponse response = null;
 	private static CalaisConfig configSetingsForOpenCalais = null;
@@ -44,7 +45,7 @@ public class OpenCalaisNERServiceCallModel {
 		return fileMain;
 	}
 
-	public OpenCalaisConfigurationModel getSam() {
+	public SemanticAnalysisProjectConfigurationMetadata getSam() {
 		return sam;
 	}
 
@@ -71,7 +72,7 @@ public class OpenCalaisNERServiceCallModel {
 		directoryForBatchProcessing = directoryForBatchProcessingName;
 	}
 
-	public void setSam(OpenCalaisConfigurationModel samName) {
+	public void setSam(SemanticAnalysisProjectConfigurationMetadata samName) {
 		sam = samName;
 	}
 
