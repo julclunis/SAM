@@ -1,3 +1,5 @@
+package views;
+
 
 
 import java.awt.BorderLayout;
@@ -29,7 +31,7 @@ import java.io.File;
 import java.io.IOException;
 import java.awt.Toolkit;
 
-public class SamFrame extends JFrame {
+public class CopyOfSamFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -52,7 +54,7 @@ public class SamFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SamFrame frame = new SamFrame();
+					CopyOfSamFrame frame = new CopyOfSamFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,7 +64,7 @@ public class SamFrame extends JFrame {
 
 	}
 
-	public SamFrame() {
+	public CopyOfSamFrame() {
 		
 		initGuiComponents();
 		createEvents();
@@ -71,7 +73,7 @@ public class SamFrame extends JFrame {
 
 	private void initGuiComponents() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				SamFrame.class.getResource("/gui/resources/samtitlepic32x32.png")));
+				CopyOfSamFrame.class.getResource("/gui/resources/samtitlepic32x32.png")));
 		setTitle("SAM Utility Tool");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -37,15 +37,15 @@ public class OpenCalaisSemanticApp extends JPanel {
 		add(headerResultsPanel);
 		headerResultsPanel.setLayout(null);
 
-		resultsFromProcessingTextField = new JTextPane();
-		resultsFromProcessingTextField.setBounds(10, 17, 309, 107);
-		headerResultsPanel.add(resultsFromProcessingTextField);
+	//	resultsFromProcessingTextField = new JTextPane();
+		//resultsFromProcessingTextField.setBounds(10, 17, 309, 107);
+		//headerResultsPanel.add(resultsFromProcessingTextField);
 
-		JLabel label_3 = new JLabel();
-		label_3.setBounds(340, 11, 80, 44);
-		headerResultsPanel.add(label_3);
-		label_3.setText("SAM");
-		label_3.setFont(new Font("Tahoma", Font.BOLD, 36));
+	//	JLabel label_3 = new JLabel();
+	//	label_3.setBounds(340, 11, 80, 44);
+	//	headerResultsPanel.add(label_3);
+	//	label_3.setText("SAM");
+	//	label_3.setFont(new Font("Tahoma", Font.BOLD, 36));
 
 		JLabel label_4 = new JLabel();
 		label_4.setBounds(362, 61, 58, 15);
@@ -58,10 +58,10 @@ public class OpenCalaisSemanticApp extends JPanel {
 		add(fileOrBatchProcessingPanel);
 		fileOrBatchProcessingPanel.setLayout(null);
 
-		fileOrDirectoryLocationTextfiled = new JTextField();
-		fileOrDirectoryLocationTextfiled.setBounds(10, 24, 410, 20);
-		fileOrBatchProcessingPanel.add(fileOrDirectoryLocationTextfiled);
-		fileOrDirectoryLocationTextfiled.setName("");
+		//fileOrDirectoryLocationTextfiled = new JTextField();
+		//fileOrDirectoryLocationTextfiled.setBounds(10, 24, 410, 20);
+		//fileOrBatchProcessingPanel.add(fileOrDirectoryLocationTextfiled);
+		//fileOrDirectoryLocationTextfiled.setName("");
 
 		JLabel label_2 = new JLabel();
 		label_2.setBounds(237, 8, 183, 14);
