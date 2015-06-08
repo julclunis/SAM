@@ -1,6 +1,7 @@
 SAM Utility Tool
 ===
 
+This is version 1.0. The Prototype.
 
 The purpose of this project is to create a prototype application to 
 provide an interface to query a OpenCalais web service.
