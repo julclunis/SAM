@@ -97,8 +97,27 @@ Developer and User need to sign up for an account and apply for a API key from O
 		Future 
 		Include ways to access other services beyond OpenCalais.
 		Includes other project such as Weka, and Stanford's NLP Tools to start processing in-house
-		Include capabilities  
+		Include capabilities for url processing
 		
+		
+		
+		
+    http://commons.apache.org/proper/commons-io/download_io.cgi
+    http://commons.apache.org/proper/commons-io/apidocs/overview-summary.html
+    http://commons.apache.org/proper/commons-io/apidocs/org/apache/commons/io/FileUtils.html#readFileToString%28java.io.File%29
+    http://stackoverflow.com/questions/326390/how-to-create-a-java-string-from-the-contents-of-a-file
+    http://www.tutorialspoint.com/java/io/java_io_bufferedreader.htm
+    http://docs.oracle.com/javase/7/docs/api/javax/swing/text/JTextComponent.html#read%28java.io.Reader%2C%20java.lang.Object%29
+    http://www.mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
+    http://www.java-tips.org/java-se-tips/java.io/how-to-read-file-in-java.html
+    http://stackoverflow.com/questions/18584228/java-program-find-string-length-from-user-input
+    http://stackoverflow.com/questions/13585327/getting-text-read-from-a-file-into-a-jframe
+    http://www.homeandlearn.co.uk/java/read_a_textfile_in_java.html
+    http://docs.oracle.com/javase/7/docs/api/java/io/DataInputStream.html
+   
+    
+    // http://stackoverflow.com/questions/1660034/replace-last-part-of-string
+    // http://www.ibiblio.org/xml/books/xmljava/chapters/ch03s03.html
 		
 		
  	

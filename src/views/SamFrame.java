@@ -3,24 +3,34 @@ package views;
 
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
-import javax.swing.UIManager;
+
 import org.apache.commons.io.FileUtils;
+
 import views.DialogForAnalyzeFreeText;
 import views.DialogForConfiguringOpenCalais;
 import models.OpenCalaisNERServiceCallModel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.awt.Toolkit;
+
+import javax.swing.JMenuItem;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 
 
@@ -33,34 +43,14 @@ public class SamFrame extends JFrame {
 	private models.OpenCalaisNERServiceCallModel logic;
 	
 	private SamToolView saopcac;
+	private SamToolView saopcac_1;
+
 	
-	private JButton configureOpenCalaisBtn;
-	private JButton startSemanticAnalysisButton;
-	private JButton btnStartFreeText;
 
-//	public static void main(String[] args) {
-//		try {
-//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//		} catch (Exception e) {
-//
-//		}
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					SamFrame frame = new SamFrame();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//
-//	}
-
-	public SamFrame() {
-		
+	public SamFrame(SamToolView stv) {
+		this.saopcac = stv; 
 		initGuiComponents();
-		createEvents();
+		//createEvents();
 
 	}
 
@@ -70,46 +60,51 @@ public class SamFrame extends JFrame {
 		setTitle("SAM Utility Tool");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 504, 374);
+		setBounds(100, 100, 473, 483);
+		
+		JMenuBar menuBar_1 = new JMenuBar();
+		setJMenuBar(menuBar_1);
+		
+		JMenu mnMenu = new JMenu("Menu");
+		menuBar_1.add(mnMenu);
+		
+		JMenuItem mntmAbout = new JMenuItem("About");
+		mntmAbout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("testhereyo");
+			}
+		});
+
+		
+		mnMenu.add(mntmAbout);
+		
+		JMenuItem mntmHelp = new JMenuItem("Help");
+		mnMenu.add(mntmHelp);
+	
+		JMenuBar menuBar = new JMenuBar();
+		
 		contentPane = new JPanel();
+
+		
+		contentPane.add(menuBar, BorderLayout.NORTH);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
+		
+	
+					saopcac_1 = new SamToolView();
+		contentPane.add(saopcac_1, BorderLayout.CENTER);
+		
+	
 		setContentPane(contentPane);
 
-		JMenuBar menuBar = new JMenuBar();
-		contentPane.add(menuBar, BorderLayout.NORTH);
-
-		JMenu menu = new JMenu("NLP");
-		menuBar.add(menu);
-
-		JRadioButton rdbtnOpencalaisWebService = new JRadioButton(
-				"OpenCalais Web Service");
-		rdbtnOpencalaisWebService.setSelected(true);
-		menu.add(rdbtnOpencalaisWebService);
-
-		JMenu menu_1 = new JMenu("Configure");
-		menuBar.add(menu_1);
-
-		configureOpenCalaisBtn = new JButton("Configure OpenCalais Connection");
-		menu_1.add(configureOpenCalaisBtn);
-
-		JMenu mnAnalyze = new JMenu("Analyze");
-		menuBar.add(mnAnalyze);
-
-		startSemanticAnalysisButton = new JButton("Start Semantic Analysis");
-		mnAnalyze.add(startSemanticAnalysisButton);
-
-		btnStartFreeText = new JButton("Start Free Text Analysis");
-		mnAnalyze.add(btnStartFreeText);
-
-		saopcac = new SamToolView();
-		contentPane.add(saopcac, BorderLayout.CENTER);
 	}
+
+
 
 	protected void startSemanticsAnalysis() {
 		configureOpenCalaisEngine();
-		if (saopcac.getFileOrDirectoryForOpenCalaisWebCall().getText() != null) {
-			File tempfile = new File(saopcac.getFileOrDirectoryForOpenCalaisWebCall().getText());
+		if (saopcac_1.getDirectoryOrFileLocation().getText() != null) {
+			File tempfile = new File(saopcac_1.getDirectoryOrFileLocation().getText());
 			
 			if (tempfile.isDirectory()) {
 				logic.setDirectoryForBatchProcessing(tempfile);
@@ -146,40 +141,9 @@ public class SamFrame extends JFrame {
 		logic.getSam().setOCApiKey(opencalaisconfiguration.getOCApiKey());
 		
 	}
+	
 
-	private void createEvents() {
-		configureOpenCalaisBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				if (opencalaisconfiguration == null) {	
-				DialogForConfiguringOpenCalais configurOC = new DialogForConfiguringOpenCalais();
-				configurOC.setModal(true);
-				opencalaisconfiguration = configurOC.showDialog();
-				} else if (opencalaisconfiguration != null) {
-					DialogForConfiguringOpenCalais configurOC = new DialogForConfiguringOpenCalais(opencalaisconfiguration);
-					configurOC.setModal(true);
-					opencalaisconfiguration = configurOC.showDialog();
-				}
-			}//end of action
-		});
-		
-		startSemanticAnalysisButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				startSemanticsAnalysis();
-			}
-		});
-		
-		btnStartFreeText.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				DialogForAnalyzeFreeText aftd = new DialogForAnalyzeFreeText();
-				aftd.setModal(true);
-				//aftd.setVisible(true);
-				//System.out.println("set if visible");
-				String contentToAnalyze = aftd.showDialog();
-				startSemanticsAnalysis(contentToAnalyze);
-
-			}
-		});
-	}// EndofCreateEVents....
+	public SamToolView getSamToolViewFromFrame() {
+		return saopcac_1;
+	}
 }

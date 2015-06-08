@@ -16,6 +16,7 @@ import javax.swing.JTextPane;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SamToolView extends JPanel {
 	/**
@@ -26,7 +27,10 @@ public class SamToolView extends JPanel {
 	private JTextField textField_1;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	private JCheckBox chckbxNewCheckBox;
 	private JTextField textField_2;
+	private JButton btnStartOpencalaissNer;
+	private final JTextField textField_5 = new JTextField();
 
 
 	/**
@@ -38,12 +42,7 @@ public class SamToolView extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Configure OpenCalais Connection", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(6, 11, 263, 111);
-		add(panel);
-		panel.setLayout(null);
-		
-		textField = new JTextField();
-		textField.setBounds(109, 18, 132, 20);
-		panel.add(textField);
+	
 		
 		JLabel lblOpencalaisApiKey = new JLabel();
 		lblOpencalaisApiKey.setBounds(10, 21, 106, 14);
@@ -61,7 +60,7 @@ public class SamToolView extends JPanel {
 		panel.add(lblFileLength);
 		lblFileLength.setText(".txt File Length Size: ");
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Include Social Tags:");
+		chckbxNewCheckBox = new JCheckBox("Include Social Tags:");
 		chckbxNewCheckBox.setHorizontalTextPosition(SwingConstants.LEFT);
 		chckbxNewCheckBox.setSelected(true);
 		chckbxNewCheckBox.setBounds(10, 76, 122, 20);
@@ -117,7 +116,7 @@ public class SamToolView extends JPanel {
 		label_2.setText("Select File or Directory to be Analyzed");
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(10, 70, 406, 20);
+		textField_2.setBounds(10, 72, 406, 23);
 		panel_1.add(textField_2);
 		textField_2.setColumns(10);
 		
@@ -151,7 +150,8 @@ public class SamToolView extends JPanel {
 		panel_2.add(lblExtractedEntitiesData);
 		lblExtractedEntitiesData.setText("Named-Entity Recognition Data Output (.csv)");
 		
-		JButton btnStartOpencalaissNer = new JButton("Start");
+		btnStartOpencalaissNer = new JButton("Start");
+
 		btnStartOpencalaissNer.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnStartOpencalaissNer.setBounds(160, 102, 101, 23);
 		panel_2.add(btnStartOpencalaissNer);
@@ -186,6 +186,12 @@ public class SamToolView extends JPanel {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1.setBounds(10, 27, 133, 14);
 		SamHeaderAndTitle.add(lblNewLabel_1);
+		
+		add(panel);
+		panel.setLayout(null);
+		textField_5.setBounds(109, 21, 144, 20);
+		panel.add(textField_5);
+		textField_5.setColumns(10);
 
 	}
 	public String getNERDataOutputDirectoryLocation() {
@@ -198,25 +204,41 @@ public class SamToolView extends JPanel {
 		return textField.getText();
 	}
 	
-	void addStartSemanticAnalysisListern(ActionListener listenForStartButton){
+	public void addStartSemanticAnalysisListern(ActionListener listenForStartButton){
 	
+		btnStartOpencalaissNer.addActionListener(listenForStartButton);
+	
+
 	}
 	
-	void addSelectCopyAndPasteBtn(ActionListener listenforCopyandPastButton){
-		
+	public void addSelectCopyAndPasteBtn(ActionListener listenforCopyandPastButton){
+		//TODO: I tie up the copy and paste button from the ui to add the action listener .addActionListener(listenforCopyandPastButton)
+		//likely add dialog to display and collect raw text - process - display to the user - decide to save your not - ask for information to save. 
 	}
 	
 	void addSelectSingleFileBtn(ActionListener listenForSingleFileButton){
-		
+		//hook up the button from this view to the listerner that is coming throug
+		//push the logic to the controller and internal actionlistener class. 
+		//liekly a dialogbow view selecting the text file. 
 	}
 	void addSelectBatchDirectoryBtn(ActionListener listforBatchDirectoryButton){
-		
+		//dialog view workflow for selecting directory for batch processing. 
 	}
 	
 	void displayErrorMessage(String errorMessage){
 		JOptionPane.showMessageDialog(this, errorMessage);
 	}
-	public JTextField getFileOrDirectoryForOpenCalaisWebCall() {
+
+	public JTextField getOpenCalaisApiKeyTextField() {
+		return textField;
+	}
+	public JTextField getStardardDocSizeTextField_1() {
+		return textField_1;
+	}
+	public JCheckBox getChckbxNewCheckBox() {
+		return chckbxNewCheckBox;
+	}
+	public JTextField getDirectoryOrFileLocation() {
 		return textField_2;
 	}
 }
